@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import dev.lone.itemsadder.api.ItemsAdder;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import static dev.lone.itemsadder.api.FontImages.FontImageWrapper.replaceFontImages;
 import static tech.ice.plugins.ShulkerBoxPreview.Config.*;
 import static tech.ice.plugins.ShulkerBoxPreview.Main.ShulkerBoxPreview;
 
@@ -73,7 +75,7 @@ public class Lore {
             int lines = 0;
             int times = 0;
             List<String> lore = new ArrayList<>();
-            for (int i = 5; i < list.size(); i++) {
+            for (int i = 0; i < list.size(); i++) {
                 times++;
                 JsonObject nbt = list.get(i).getAsJsonObject();
                 boolean display = nbt.toString().contains("display") && nbt.toString().contains("Name") && nbt.toString().contains("text") && nbt.getAsJsonObject("tag").getAsJsonObject("display").get("Name") != null;
@@ -110,11 +112,11 @@ public class Lore {
                             }
                             String msg = String.format(format_display_item, tag, str.substring(1, str.length() - 1));
                             if (lore.size() == 0) {
-                                lore.add(first_per_n_line + msg);
+                                lore.add(first_per_n_line + replaceFontImages(msg));
                             } else if (times <= item_per_n_line) {
-                                lore.set(lines, lore.get(lines) + item_per_n_append + msg);
+                                lore.set(lines, lore.get(lines) + item_per_n_append + replaceFontImages(msg));
                             } else {
-                                lore.add(first_per_n_line + msg);
+                                lore.add(first_per_n_line + replaceFontImages(msg));
                                 lines++;
                                 times = 1;
                             }
@@ -128,11 +130,11 @@ public class Lore {
                             }
                             String msg = String.format(format_display_items, tag, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
                             if (lore.size() == 0) {
-                                lore.add(first_per_n_line + msg);
+                                lore.add(first_per_n_line + replaceFontImages(msg));
                             } else if (times <= item_per_n_line) {
-                                lore.set(lines, lore.get(lines) + item_per_n_append + msg);
+                                lore.set(lines, lore.get(lines) + item_per_n_append + replaceFontImages(msg));
                             } else {
-                                lore.add(first_per_n_line + msg);
+                                lore.add(first_per_n_line + replaceFontImages(msg));
                                 lines++;
                                 times = 1;
                             }
@@ -148,11 +150,11 @@ public class Lore {
                             }
                             String msg = String.format(format_item, str.substring(1, str.length() - 1));
                             if (lore.size() == 0) {
-                                lore.add(first_per_n_line + msg);
+                                lore.add(first_per_n_line + replaceFontImages(msg));
                             } else if (times <= item_per_n_line) {
-                                lore.set(lines, lore.get(lines) + item_per_n_append + msg);
+                                lore.set(lines, lore.get(lines) + item_per_n_append + replaceFontImages(msg));
                             } else {
-                                lore.add(first_per_n_line + msg);
+                                lore.add(first_per_n_line + replaceFontImages(msg));
                                 lines++;
                                 times = 1;
                             }
@@ -166,11 +168,11 @@ public class Lore {
                             }
                             String msg = String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
                             if (lore.size() == 0) {
-                                lore.add(first_per_n_line + msg);
+                                lore.add(first_per_n_line + replaceFontImages(msg));
                             } else if (times <= item_per_n_line) {
-                                lore.set(lines, lore.get(lines) + item_per_n_append + msg);
+                                lore.set(lines, lore.get(lines) + item_per_n_append + replaceFontImages(msg));
                             } else {
-                                lore.add(first_per_n_line + msg);
+                                lore.add(first_per_n_line + replaceFontImages(msg));
                                 lines++;
                                 times = 1;
                             }
@@ -208,11 +210,11 @@ public class Lore {
                         }
                         String msg = String.format(format_display_item, tag, str.substring(1, str.length() - 1));
                         if (lore.size() == 0) {
-                            lore.add(first_per_n_line + msg);
+                            lore.add(first_per_n_line + replaceFontImages(msg));
                         } else if (times <= item_per_n_line) {
-                            lore.set(lines, lore.get(lines) + item_per_n_append + msg);
+                            lore.set(lines, lore.get(lines) + item_per_n_append + replaceFontImages(msg));
                         } else {
-                            lore.add(first_per_n_line + msg);
+                            lore.add(first_per_n_line + replaceFontImages(msg));
                             lines++;
                             times = 1;
                         }
@@ -226,11 +228,11 @@ public class Lore {
                         }
                         String msg = String.format(format_display_items, tag, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
                         if (lore.size() == 0) {
-                            lore.add(first_per_n_line + msg);
+                            lore.add(first_per_n_line + replaceFontImages(msg));
                         } else if (times <= item_per_n_line) {
-                            lore.set(lines, lore.get(lines) + item_per_n_append + msg);
+                            lore.set(lines, lore.get(lines) + item_per_n_append + replaceFontImages(msg));
                         } else {
-                            lore.add(first_per_n_line + msg);
+                            lore.add(first_per_n_line + replaceFontImages(msg));
                             lines++;
                             times = 1;
                         }
@@ -246,11 +248,11 @@ public class Lore {
                         }
                         String msg = String.format(format_item, str.substring(1, str.length() - 1));
                         if (lore.size() == 0) {
-                            lore.add(first_per_n_line + msg);
+                            lore.add(first_per_n_line + replaceFontImages(msg));
                         } else if (times <= item_per_n_line) {
-                            lore.set(lines, lore.get(lines) + item_per_n_append + msg);
+                            lore.set(lines, lore.get(lines) + item_per_n_append + replaceFontImages(msg));
                         } else {
-                            lore.add(first_per_n_line + msg);
+                            lore.add(first_per_n_line + replaceFontImages(msg));
                             lines++;
                             times = 1;
                         }
@@ -264,22 +266,26 @@ public class Lore {
                         }
                         String msg = String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
                         if (lore.size() == 0) {
-                            lore.add(first_per_n_line + msg);
+                            lore.add(first_per_n_line + replaceFontImages(msg));
                         } else if (times <= item_per_n_line) {
-                            lore.set(lines, lore.get(lines) + item_per_n_append + msg);
+                            lore.set(lines, lore.get(lines) + item_per_n_append + replaceFontImages(msg));
                         } else {
-                            lore.add(first_per_n_line + msg);
+                            lore.add(first_per_n_line + replaceFontImages(msg));
                             lines++;
                             times = 1;
                         }
                     }
                 }
             }
+            lore.add(0, "");
+            int size = lore.size();
+            for (int i = 0; i < size; i++) {
+                lore.add(i * 2 + 1, "");
+            }
             meta.setLore(lore);
             itemStack.setItemMeta(meta);
         }
     }
-
     public static void clear(ItemStack itemStack) {
         if (itemStack.getItemMeta() != null && itemStack.hasItemMeta()) {
             if (itemStack.getItemMeta().hasLore()) {

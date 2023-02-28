@@ -74,7 +74,7 @@ public class Config {
         version = config.getString("config-version");
         item_per_n_line = config.getInt("messages.item-per-n-line", 4);
         item_per_n_append = config.getString("messages.item-per-n-append", " , ");
-        first_per_n_line = config.getString("messages.first-per-n-line", "  ");
+        first_per_n_line = config.getString("messages.first-per-n-line", "\n");
         reload = config.getString("messages.command.reload", "§b已重新讀取所有配置檔");
         no_per = config.getString("messages.command.no-per", "§b已重新讀取所有配置檔案");
         format_display_item = config.getString("messages.format.display-item", "§f%1s (%2s)");
