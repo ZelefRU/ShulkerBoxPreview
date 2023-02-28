@@ -128,7 +128,18 @@ public class Lore {
                             } else {
                                 str = locale.get("argument.id.invalid").toString();
                             }
-                            String msg = String.format(format_display_items, tag, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
+                            if (Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) == 1) {
+                                String msg = String.format(format_display_items, tag, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) + "  ");
+                            }
+                            else if (Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) < 10) {
+                                String msg = String.format(format_display_items, tag, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) + " ");
+                            }
+                            else {
+                                String msg = String.format(format_display_items, tag, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
+                            }
+                            String msg = Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) == 1 ? String.format(format_display_items, tag, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) + "  "):
+                                         Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) < 10 ? String.format(format_display_items, tag, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) + " "):
+                                         String.format(format_display_items, tag, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
                             if (lore.size() == 0) {
                                 lore.add(first_per_n_line + replaceFontImages(msg));
                             } else if (times <= item_per_n_line) {
@@ -166,7 +177,9 @@ public class Lore {
                             } else {
                                 str = locale.get("argument.id.invalid").toString();
                             }
-                            String msg = String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
+                            String msg = Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) == 1 ? String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) + "  "):
+                                         Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) < 10 ? String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) + " "):
+                                         String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
                             if (lore.size() == 0) {
                                 lore.add(first_per_n_line + replaceFontImages(msg));
                             } else if (times <= item_per_n_line) {
@@ -264,7 +277,10 @@ public class Lore {
                         } else {
                             str = locale.get("argument.id.invalid").toString();
                         }
-                        String msg = String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
+                        String msg = Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) == 1 ? String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) + "  "):
+                                     Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) < 10 ? String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")) + " "):
+                                     String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
+//                        String msg = String.format(format_items, str.substring(1, str.length() - 1), Integer.parseInt(nbt.get("Count").toString().replace("b", "").replace("\"", "")));
                         if (lore.size() == 0) {
                             lore.add(first_per_n_line + replaceFontImages(msg));
                         } else if (times <= item_per_n_line) {
@@ -277,7 +293,8 @@ public class Lore {
                     }
                 }
             }
-            lore.add(0, "");
+            lore.add(0, replaceFontImages(":offset_-1::shulkerbox_container:"));
+//            lore.add(0, replaceFontImages(":offset_10: "));
             int size = lore.size();
             for (int i = 0; i < size; i++) {
                 lore.add(i * 2 + 1, "");
